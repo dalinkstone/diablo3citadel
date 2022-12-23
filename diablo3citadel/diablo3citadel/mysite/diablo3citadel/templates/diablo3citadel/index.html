@@ -1,0 +1,13 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'diablo3citadel/style.css' %}">
+    
+{% if top_5_records %}
+    <ul>
+    {% for item in top_5_records %}
+        <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+        
