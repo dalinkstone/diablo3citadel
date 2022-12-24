@@ -2,7 +2,7 @@ import requests
 import json
 import unittest as ut
 from diablo3citadel.diablo3tasks import get_item_type_index
-from diablo3citadel.mysite.diablo3citadel.models import ItemTypeIndex
+#from mysite.diablo3citadel.models import ItemTypeIndex
 
 # We need to store the client credentials and then use them as a f'{string}' in the url that can then be passed to the post request 
 # To get the token we should use the 'auth' parameter to keep things separated, similar to how we are already doing it
@@ -20,7 +20,13 @@ def main_flow():
 
     item_type_index = get_item_type_index()
 
-    return print(item_type_index)
+    list_of_values = []
+    id_counter = 0
+    name_counter = 1
+    path_counter = 2
 
-main_flow()
+    for item in item_type_index:
+        list_of_values += list(item.values())
+
+    return list_of_values
 
