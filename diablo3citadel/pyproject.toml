@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "diablo3citadel"
+version = "0.1.0"
+description = ""
+authors = ["dalinkstone <95542331+dalinkstone@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.1.4"
+psycopg2 = "^2.9.5"
+django-environ = "^0.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
