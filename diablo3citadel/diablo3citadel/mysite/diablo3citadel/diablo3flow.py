@@ -21,9 +21,6 @@ def main_flow():
     item_type_index = get_item_type_index()
 
     list_of_values = []
-    id_counter = 0
-    name_counter = 1
-    path_counter = 2
 
     for item in item_type_index:
         list_of_values += list(item.values())
