@@ -37,16 +37,12 @@ def get_item_type(
 
     item_type = item_type_response.text
 
-    #Here we are using the itemTypeSlug in order to return all of the items that are associated
-    #with that specific itemTypeSlug. For example, the sword2h slug has like ~50 different 2h-sword items
-    #that are associated with it. In order to get the one that we want we would need to pass a keyword
-    #just like in the get_item_type_index function. The value we would want to use for the icon
-    #and for the specific itemTypeSlug is after the path, like in the previous function
-    #I think passing a keyword here or some type of an exchange with the item_type_index function would
-    #be very valuable
-
     return print(item_type)
 
+#
+# Update these functionalities so we can have a person input their profile name and the app will run the name through the API
+# Retrieve the items and make it all look really pretty
+# Then we can compare the heroes items against better item sets for the specific character class
 
 
 
