@@ -8,3 +8,41 @@ class ItemTypeIndex(models.Model):
 
     def __str__(self):
         return self.id
+
+class ItemType(models.Model):
+    id = models.CharField(max_length=100, primary_key=True)
+    slug = models.SlugField(max_length=100)
+    name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=200)
+    path = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.id
+
+class Item(models.Model):
+    id = models.AutoField()
+    itemTypeId = models.ForeignKey(ItemType, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=100)
+    name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=100)
+    tooltipParams = models.CharField(max_length=200)
+    requiredLevel = models.IntegerField()
+    stackSizeMax = models.IntegerField()
+    accountBound = models.BooleanField()
+    flavorText = models.TextField()
+    flavorTextHtml = models.TextField()
+    typeName = models.CharField(max_length=100)
+    type = models.JSONField()
+    damage = models.TextField()
+    dps = models.CharField()
+    damageHtml = models.TextField()
+    color = models.CharField()
+    isSeasonRequiredToDrop = models.BooleanField()
+    seasonRequiredToDrop = models.IntegerField()
+    slots = models.JSONField()
+    attributes = models.JSONField()
+    randomAffixes = models.JSONField()
+    setItems = models.JSONField()
+
+    def __str__(self):
+        return self.id
