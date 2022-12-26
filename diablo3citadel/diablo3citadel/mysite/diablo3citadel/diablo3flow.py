@@ -1,6 +1,3 @@
-import requests
-import json
-import unittest as ut
 from diablo3citadel.diablo3tasks import get_item_type_index
 #from mysite.diablo3citadel.models import ItemTypeIndex
 

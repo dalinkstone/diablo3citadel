@@ -16,13 +16,22 @@ def get_item_type_index():
     return item_type_index
 
 
-def get_item_from_index(item_type_index, item_name: str):
+def get_item_from_index(values_list):
 
-    get_itemTypeIndexSlug = [item['path'] for item in item_type_index if item['name'] == {item_name}]
+    path_list = 0
+    itemTypeIndexSlugList = []
+    itemTypeIndexSlug = [item['path'] for item in values_list]
 
-    split_result = get_itemTypeIndexSlug[0].rsplit('/', 1)
+    while path_list < len(itemTypeIndexSlug):
+        itemTypeIndexSlugList += itemTypeIndexSlug[path_list].rsplit('/', 1)
+        path_list += 1
 
-    return print(split_result[1])
+    remove_item_type = 0
+    while remove_item_type < len(itemTypeIndexSlugList):
+        itemTypeIndexSlugList.pop(remove_item_type)
+        remove_item_type += 1
+    
+    return itemTypeIndexSlugList
 
 
 def get_item_type(
