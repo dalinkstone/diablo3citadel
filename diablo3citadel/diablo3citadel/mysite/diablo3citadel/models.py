@@ -1,6 +1,26 @@
 from django.db import models
 
 # Create your models here.
+class characterClass(models.Model):
+    id = models.AutoField(primary_key=True)
+    slug = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=100)
+    skillCategories = models.JSONField()
+    skills = models.JSONField()
+    passive = models.JSONField()
+
+    def __str__(self):
+        return self.id
+
+class Skill(models.Model):
+    id = models.AutoField(primary_key=True)
+    skill = models.JSONField()
+    runes = models.JSONField()
+
+    def __str__(self):
+        return self.id
+
 class ItemTypeIndex(models.Model):
     id = models.CharField(max_length=100, primary_key=True)
     name = models.CharField(max_length=100)
@@ -20,7 +40,7 @@ class ItemType(models.Model):
         return self.id
 
 class Item(models.Model):
-    id = models.AutoField()
+    id = models.AutoField(primary_key=True)
     itemTypeId = models.ForeignKey(ItemType, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=100)
     name = models.CharField(max_length=100)
