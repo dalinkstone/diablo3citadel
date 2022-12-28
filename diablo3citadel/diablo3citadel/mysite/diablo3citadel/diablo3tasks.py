@@ -46,7 +46,7 @@ def get_item_type(
 
     item_type = item_type_response.text
 
-    return print(item_type)
+    return item_type
 
 #
 # Update these functionalities so we can have a person input their profile name and the app will run the name through the API
