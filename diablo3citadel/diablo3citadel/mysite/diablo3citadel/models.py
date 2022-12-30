@@ -41,7 +41,6 @@ class ItemType(models.Model):
 
 class Item(models.Model):
     id = models.AutoField(primary_key=True)
-    itemTypeId = models.ForeignKey(ItemType, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=100)
     name = models.CharField(max_length=100)
     icon = models.CharField(max_length=100)

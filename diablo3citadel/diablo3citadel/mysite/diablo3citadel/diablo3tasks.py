@@ -51,6 +51,9 @@ def get_item_type(
 def get_item(
     item_slug_and_id: str
 ):
+
+    print('Starting get_item flow')
+
     token = get_token()
 
     item_uri = f'https://us.api.blizzard.com/d3/data/item/{item_slug_and_id}?access_token={token}'
@@ -58,8 +61,6 @@ def get_item(
     item_response = requests.get(url=item_uri)
 
     items = item_response.text
-
-    items = json.loads(items)
 
     return items
 

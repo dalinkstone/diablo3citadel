@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from diablo3citadel.models import ItemTypeIndex, ItemType
+from diablo3citadel.models import ItemTypeIndex, ItemType, Item
 from diablo3citadel.diablo3flow import main_flow
 from diablo3citadel.diablo3tasks import get_item_type_index, get_item_from_index, get_item_type, get_item
 import json
@@ -31,14 +31,38 @@ class Command(BaseCommand):
             for value in item_types:
                 item_type_input_row = ItemType(id=value['id'], name=value['name'], slug=value['slug'], icon=value['icon'], path=value['path'])
                 item_type_input_row.save()
+        
+        itemTypeSlugList = get_item_from_index(item_type_index)
 
-        for item in item_type_slug_list:
-            item_type_list = get_item_type(item)
-            item_types = json.loads(item_type_list)
-            for value in item_types:
+        for item in itemTypeSlugList:
+            item_type_values_list = get_item_type(item)
+            item_type_values = json.loads(item_type_values_list)
+            for value in item_type_values:
                 item_row = value['slug']+'-'+value['id']
-                item_value = get_item(item_row)
-                
+                print(item_row)
+
+                # We have to make it skip this row, because it's not working on the
+                # API server --- if item_row == 'ariocs_needle-P71_Ethereal_21':
+
+                item_values = get_item(item_row)
+                print(item_values)
+                item_value = json.loads(item_values)
+                slots = item_value['slots']
+                slot_dict = {}
+                for slot in slots:
+                    i = 0
+                    slot_dict += {f'{i}': f'{slot}'}
+                    i += 1
+                setItems = item_value['setItems']
+                setItems_dict = {}
+
+                for set in setItems:
+                    i = 0
+                    setItems_dict += {f'{i}': f'{set}'}
+                    i += 1
+                item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
+                item_value_row.save()
+
 
     def handle(self, *args, **options):
         self._create_rows()
