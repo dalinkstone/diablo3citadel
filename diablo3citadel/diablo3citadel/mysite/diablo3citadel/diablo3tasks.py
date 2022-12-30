@@ -48,6 +48,22 @@ def get_item_type(
 
     return item_type
 
+def get_item(
+    item_slug_and_id: str
+):
+    token = get_token()
+
+    item_uri = f'https://us.api.blizzard.com/d3/data/item/{item_slug_and_id}?access_token={token}'
+
+    item_response = requests.get(url=item_uri)
+
+    items = item_response.text
+
+    items = json.loads(items)
+
+    return items
+
+
 #
 # Update these functionalities so we can have a person input their profile name and the app will run the name through the API
 # Retrieve the items and make it all look really pretty
