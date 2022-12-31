@@ -40,45 +40,44 @@ class Command(BaseCommand):
             for value in item_type_values:
                 item_row = value['slug']+'-'+value['id']
                 print(item_row)
+                if (item_row == 'ariocs-needle-P71_Ethereal_21') or (item_row == 'the-gidbinn-P71_Ethereal_07'):
+                    continue
 
                 item_values = get_item(item_row)
-                try:
-                    item_value = json.loads(item_values)
+                item_value = json.loads(item_values)
                 
 
-                    if ('flavorText' in item_value) == False:
-                        item_value['flavorText'] = 'None'
-                        item_value['flavorTextHtml'] = 'None'
+                if ('flavorText' in item_value) == False:
+                    item_value['flavorText'] = 'None'
+                    item_value['flavorTextHtml'] = 'None'
 
-                    if ('armor' in item_value) == False:
-                        item_value['armor'] = '0'
-                        item_value['armorHtml'] = '0'
+                if ('armor' in item_value) == False:
+                    item_value['armor'] = '0'
+                    item_value['armorHtml'] = '0'
 
-                    if ('damage' in item_value) == False:
-                        item_value['damage'] = '0'
-                        item_value['damageHtml'] = '0'
-                        item_value['dps'] = '0'
+                if ('damage' in item_value) == False:
+                    item_value['damage'] = '0'
+                    item_value['damageHtml'] = '0'
+                    item_value['dps'] = '0'
 
-                    if ('attributes' in item_value) == False:
-                        item_value['attributes'] = {'None': 'None'}
+                if ('attributes' in item_value) == False:
+                    item_value['attributes'] = {'None': 'None'}
 
-                    if ('randomAffixes' in item_value) == False:
-                        item_value['randomAffixes'] = {'None': 'None'}
+                if ('randomAffixes' in item_value) == False:
+                    item_value['randomAffixes'] = {'None': 'None'}
 
-                    slots = item_value['slots']
-                    slot_dict = {}
-                    sd = range(len(slots))
-                    for int in sd:
-                        slot_dict[int] = slots[int]
-                    setItems = item_value['setItems']
-                    setItems_dict = {}
-                    si = range(len(setItems))
-                    for int in si:
-                        setItems_dict[int] = setItems[int]
-                    item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], armor=item_value['armor'], armorHtml=item_value['armorHtml'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
-                    item_value_row.save()
-                except:
-                    pass
+                slots = item_value['slots']
+                slot_dict = {}
+                sd = range(len(slots))
+                for int in sd:
+                    slot_dict[int] = slots[int]
+                setItems = item_value['setItems']
+                setItems_dict = {}
+                si = range(len(setItems))
+                for int in si:
+                    setItems_dict[int] = setItems[int]
+                item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], armor=item_value['armor'], armorHtml=item_value['armorHtml'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
+                item_value_row.save()
 
 
     def handle(self, *args, **options):
