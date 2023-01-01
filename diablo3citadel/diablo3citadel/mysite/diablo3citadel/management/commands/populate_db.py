@@ -66,11 +66,12 @@ class Command(BaseCommand):
                 if ('randomAffixes' in item_value) == False:
                     item_value['randomAffixes'] = {'None': 'None'}
 
-                slots = item_value['slots']
                 slot_dict = {}
-                sd = range(len(slots))
-                for int in sd:
-                    slot_dict[int] = slots[int]
+                if ('slots' in item_value):
+                    slots = item_value['slots']
+                    sd = range(len(slots))
+                    for int in sd:
+                        slot_dict[int] = slots[int]
                 setItems = item_value['setItems']
                 setItems_dict = {}
                 si = range(len(setItems))
