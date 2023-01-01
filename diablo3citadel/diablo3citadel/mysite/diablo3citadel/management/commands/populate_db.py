@@ -40,7 +40,7 @@ class Command(BaseCommand):
             for value in item_type_values:
                 item_row = value['slug']+'-'+value['id']
                 print(item_row)
-                if ('Ethereal' in item_row) or ('town-portal-stone-TownPortalStone' in item_row) or ('a-gift-ConsoleFriendGift' in item_row) or ('1h-mystery-weapon-PH_1HWeapon' in item_row) or ('2h-mystery-weapon-PH_2HWeapon' in item_row):
+                if ('Ethereal' in item_row) or ('town-portal-stone-TownPortalStone' in item_row) or ('a-gift-ConsoleFriendGift' in item_row) or ('1h-mystery-weapon-PH_1HWeapon' in item_row) or ('2h-mystery-weapon-PH_2HWeapon' in item_row) or ('gold-Gold4' in item_row) or ('gold-Gold3' in item_row) or ('gold-Gold1' in item_row):
                     continue
 
                 item_values = get_item(item_row)
