@@ -72,11 +72,14 @@ class Command(BaseCommand):
                     sd = range(len(slots))
                     for int in sd:
                         slot_dict[int] = slots[int]
-                setItems = item_value['setItems']
+                
                 setItems_dict = {}
-                si = range(len(setItems))
-                for int in si:
-                    setItems_dict[int] = setItems[int]
+                if ('setItems' in item_value):
+                    setItems = item_value['setItems']
+                    si = range(len(setItems))
+                    for int in si:
+                        setItems_dict[int] = setItems[int]
+
                 item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], armor=item_value['armor'], armorHtml=item_value['armorHtml'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
                 item_value_row.save()
 
