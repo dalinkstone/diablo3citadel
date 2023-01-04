@@ -40,11 +40,14 @@ class Command(BaseCommand):
             for value in item_type_values:
                 item_row = value['slug']+'-'+value['id']
                 print(item_row)
-                if ('Ethereal' in item_row) or ('town-portal-stone-TownPortalStone' in item_row) or ('a-gift-ConsoleFriendGift' in item_row) or ('1h-mystery-weapon-PH_1HWeapon' in item_row) or ('2h-mystery-weapon-PH_2HWeapon' in item_row) or ('gold-Gold4' in item_row) or ('gold-Gold3' in item_row) or ('gold-Gold1' in item_row) or ('gold-Gold2' in item_row) or ('mysterious-box-The Adventurer\'s Box' in item_row) or ('shard-Shard' in item_row) or ('debug-transmog-plan-Debug_Transmog_Plan' in item_row) or ('greater-shard-GreaterShard' in item_row):
-                    continue
+                # if ('Ethereal' in item_row) or ('town-portal-stone-TownPortalStone' in item_row) or ('a-gift-ConsoleFriendGift' in item_row) or ('1h-mystery-weapon-PH_1HWeapon' in item_row) or ('2h-mystery-weapon-PH_2HWeapon' in item_row) or ('gold-Gold4' in item_row) or ('gold-Gold3' in item_row) or ('gold-Gold1' in item_row) or ('gold-Gold2' in item_row) or ('mysterious-box-The Adventurer\'s Box' in item_row) or ('shard-Shard' in item_row) or ('debug-transmog-plan-Debug_Transmog_Plan' in item_row) or ('greater-shard-GreaterShard' in item_row):
+                #     continue
 
                 item_values = get_item(item_row)
-                item_value = json.loads(item_values)
+                try:
+                    item_value = json.loads(item_values)
+                except:
+                    continue
                 
 
                 if ('flavorText' in item_value) == False:
@@ -79,8 +82,10 @@ class Command(BaseCommand):
                     si = range(len(setItems))
                     for int in si:
                         setItems_dict[int] = setItems[int]
-
-                item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], armor=item_value['armor'], armorHtml=item_value['armorHtml'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
+                try:
+                    item_value_row = Item(id=item_value['id'], slug=item_value['slug'], name=item_value['name'], icon=item_value['icon'], tooltipParams=item_value['tooltipParams'], requiredLevel=item_value['requiredLevel'], stackSizeMax=item_value['stackSizeMax'], accountBound=item_value['accountBound'], flavorText=item_value['flavorText'], flavorTextHtml=item_value['flavorTextHtml'], typeName=item_value['typeName'], type=item_value['type'], armor=item_value['armor'], armorHtml=item_value['armorHtml'], damage=item_value['damage'], dps=item_value['dps'], damageHtml=item_value['damageHtml'], color=item_value['color'], isSeasonRequiredToDrop=item_value['isSeasonRequiredToDrop'], seasonRequiredToDrop=item_value['seasonRequiredToDrop'], slots=slot_dict, attributes=item_value['attributes'], randomAffixes=item_value['randomAffixes'], setItems=setItems_dict)
+                except:
+                    continue
                 item_value_row.save()
 
 
