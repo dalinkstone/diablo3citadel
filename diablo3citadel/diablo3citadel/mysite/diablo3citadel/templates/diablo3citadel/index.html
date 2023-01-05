@@ -1,13 +1,24 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'diablo3citadel/style.css' %}">
     
-{% if top_5_records %}
+{% if top_10_records %}
     <ul>
-    {% for item in top_5_records %}
+    {% for item in top_10_records %}
         <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No records are available.</p>
 {% endif %}
+
+{% if top_10_items %}
+    <ul>
+        {% for item in top_10_items %}
+            <li><a href="{% url 'itemDetail' item.id %}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No items are available.</p>
+{% endif %}
+
         
