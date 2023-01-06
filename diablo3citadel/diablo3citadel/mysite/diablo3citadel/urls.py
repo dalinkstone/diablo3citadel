@@ -8,7 +8,4 @@ urlpatterns = [
     path('<str:itemtypeindex_id>/', views.detail, name='detail'),
     
     path('<str:item_id>/results', views.itemDetail, name='itemDetail'),
-
-    # /itemtypeindex/HyperionSpear/results
-    path('<str:itemtypeindex_id>/results/', views.results, name='results'),
 ]
