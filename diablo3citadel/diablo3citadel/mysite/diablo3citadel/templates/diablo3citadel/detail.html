@@ -7,8 +7,13 @@
     <title>Diablo3Citadel</title>
 </head>
 <body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'diablo3citadel/style.css' %}">
     {{ record }}
-    {{ item }}
+    
+    <h1>{{ item }}</h1>
+    
     {{ item.dps }}
+    
 </body>
 </html>
